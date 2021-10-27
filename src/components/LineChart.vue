@@ -11,9 +11,6 @@ lineSpec.data = { values: fieldkitData.data };
 
 export default {
   name: "LineChart",
-  props: {
-    msg: String,
-  },
   mounted: function () {
     vegaEmbed("#viz", lineSpec, {
       renderer: "svg",
