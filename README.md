@@ -1,24 +1,5 @@
 # fieldkit-vue-vega
 
-## Project setup
-```
-npm install
-```
+Vega-Lite spec and Vega-embed integration in Vue for FieldKit sensor data.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The line chart spec is in [src/assets/line.vl.json](src/assets/line.vl.json). The data from [src/assets/fieldkitData.json](src/assets/fieldkitData.json) is merged into the spec in [src/components/LineChart.vue](src/components/LineChart.vue).
