@@ -1,22 +1,29 @@
 <template>
-  <div id="app">
-    <LineChart />
+  <div class="charts">
+    <div class="chart">
+      <LineChart />
+    </div>
+    <div class="chart">
+      <Histogram />
+    </div>
   </div>
 </template>
 
 <script>
 import LineChart from "./components/LineChart.vue";
+import Histogram from "./components/Histogram.vue";
 
 export default {
   name: "App",
   components: {
     LineChart,
+    Histogram,
   },
 };
 </script>
 
 <style>
-#app {
+.chart {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

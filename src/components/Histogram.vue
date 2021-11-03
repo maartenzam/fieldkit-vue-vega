@@ -1,18 +1,18 @@
 <template>
-  <div class="viz linechart"></div>
+  <div class="viz histogram"></div>
 </template>
 
 <script>
 import { default as vegaEmbed } from "vega-embed";
-import lineSpec from "../assets/line.vl.json";
+import histoSpec from "../assets/histo.vl.json";
 import fieldkitData from "../assets/fieldkitData.json";
 
-lineSpec.data = { values: fieldkitData.data };
+histoSpec.data = { values: fieldkitData.data };
 
 export default {
   name: "LineChart",
   mounted: function () {
-    vegaEmbed(".linechart", lineSpec, {
+    vegaEmbed(".histogram", histoSpec, {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },

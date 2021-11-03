@@ -25,10 +25,6 @@
     }
   },
   "width": "container",
-  "data": {
-    "url": "/fieldkitData.json",
-    "format": { "type": "json", "property": "data" }
-  },
   "params": [
     {
       "name": "interpolate",
