@@ -1,22 +1,26 @@
 <template>
-  <div class="viz histogram"></div>
+  <div class="viz rangechart"></div>
 </template>
 
 <script>
 import { default as vegaEmbed } from "vega-embed";
-import histoSpec from "../assets/histo.vl.json";
+import rangeSpec from "../assets/range.vl.json";
 import fieldkitData from "../assets/fieldkitData.json";
 
-histoSpec.data = { values: fieldkitData.data };
+rangeSpec.data = { values: fieldkitData.data, name: "rangedata" };
 
 export default {
-  name: "Histogram",
+  name: "RangeChart",
   mounted: function () {
-    vegaEmbed(".histogram", histoSpec, {
+    vegaEmbed(".rangechart", rangeSpec, {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },
     });
+    /*.then(function (result) {
+        console.log(result.view.data("rangedata"));
+      })
+      .catch(console.error);*/
   },
 };
 </script>

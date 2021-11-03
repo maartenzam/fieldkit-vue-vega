@@ -24,12 +24,38 @@
       "stroke": "transparent"
     }
   },
-
+  "transform": [
+    {
+      "bin": { "maxbins": 20 },
+      "field": "time",
+      "as": "bin_time"
+    },
+    {
+      "aggregate": [
+        { "op": "min", "field": "value", "as": "minimum" },
+        { "op": "max", "field": "value", "as": "maximum" }
+      ],
+      "groupby": ["bin_time", "bin_time_end"]
+    },
+    {
+      "joinaggregate": [
+        { "op": "min", "field": "minimum", "as": "absoluteMinimum" },
+        { "op": "max", "field": "maximum", "as": "absoluteMaximum" }
+      ]
+    },
+    {
+      "calculate": "(datum.maximum-datum.absoluteMinimum)/(datum.absoluteMaximum-datum.absoluteMinimum)",
+      "as": "relativeMax"
+    },
+    {
+      "calculate": "(datum.minimum-datum.absoluteMinimum)/(datum.absoluteMaximum-datum.absoluteMinimum)",
+      "as": "relativeMin"
+    }
+  ],
   "width": "container",
   "encoding": {
     "x": {
-      "bin": { "maxbins": 20 },
-      "field": "time",
+      "field": "bin_time",
       "type": "temporal",
       "axis": {
         "formatType": "time",
@@ -37,11 +63,19 @@
       },
       "title": null
     },
-    "y": { "aggregate": "min", "field": "value", "scale": { "zero": false } },
-    "y2": { "aggregate": "max", "field": "value" },
+    "x2": {
+      "field": "bin_time_end",
+      "type": "temporal"
+    },
+    "y": {
+      "field": "minimum",
+      "type": "quantitative",
+      "scale": { "zero": false }
+    },
+    "y2": { "field": "maximum" },
     "tooltip": [
-      { "aggregate": "max", "field": "value" },
-      { "aggregate": "min", "field": "value" }
+      { "field": "maximum", "formatType": "number", "format": ".3" },
+      { "field": "minimum", "formatType": "number", "format": ".3" }
     ]
   },
   "layer": [
@@ -70,7 +104,8 @@
                 { "offset": 1, "color": "#FCFFA4" }
               ]
             },
-            "strokeWidth": 2
+            "strokeWidth": 1,
+            "stroke": "#ffffff"
           }
         }
       ]

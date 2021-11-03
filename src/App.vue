@@ -1,6 +1,9 @@
 <template>
   <div class="charts">
     <div class="chart">
+      <RangeChart />
+    </div>
+    <div class="chart">
       <LineChart />
     </div>
     <div class="chart">
@@ -12,12 +15,14 @@
 <script>
 import LineChart from "./components/LineChart.vue";
 import Histogram from "./components/Histogram.vue";
+import RangeChart from "./components/RangeChart.vue";
 
 export default {
   name: "App",
   components: {
     LineChart,
     Histogram,
+    RangeChart,
   },
 };
 </script>
