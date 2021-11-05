@@ -83,7 +83,9 @@
       "layer": [
         {
           "mark": {
-            "type": "bar",
+            "type": "area",
+            "tooltip": false,
+            "interpolate": "step-after",
             "color": {
               "x1": 1,
               "x2": 1,
@@ -104,6 +106,25 @@
                 { "offset": 1, "color": "#FCFFA4" }
               ]
             },
+            "strokeWidth": 1,
+            "stroke": "#ffffff"
+          }
+        }
+      ]
+    },
+    {
+      "layer": [
+        {
+          "encoding": {
+            "tooltip": [
+              { "field": "maximum", "formatType": "number", "format": ".3" },
+              { "field": "minimum", "formatType": "number", "format": ".3" }
+            ]
+          },
+          "mark": {
+            "type": "bar",
+            "tooltip": true,
+            "fillOpacity": 0,
             "strokeWidth": 1,
             "stroke": "#ffffff"
           }
