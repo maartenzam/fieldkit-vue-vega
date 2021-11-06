@@ -50,6 +50,15 @@
     {
       "transform": [{ "filter": { "param": "brush" } }],
       "mark": { "type": "area", "color": "#52b5e4" }
+    },
+    {
+      "mark": { "type": "image", "width": 30, "height": 30 },
+      "encoding": {
+        "x": { "field": "time", "type": "temporal" },
+        "y": { "field": "value", "type": "quantitative" },
+        "url": { "field": "img", "type": "nominal" }
+      }
     }
-  ]
+  ],
+  "resolve": { "axis": { "x": "shared", "y": "shared" } }
 }

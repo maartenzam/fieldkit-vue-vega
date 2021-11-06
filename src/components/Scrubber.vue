@@ -9,8 +9,10 @@
 import { default as vegaEmbed } from "vega-embed";
 import scrubberSpec from "../assets/scrubber.vl.json";
 import fieldkitData from "../assets/fieldkitData.json";
+import iconsData from "../assets/iconsData.json";
 
 scrubberSpec.data = { values: fieldkitData.data };
+scrubberSpec.layer[2].data = { values: iconsData.data };
 
 export default {
   name: "Scrubber",
