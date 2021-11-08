@@ -36,20 +36,6 @@
         { "op": "max", "field": "value", "as": "maximum" }
       ],
       "groupby": ["bin_time", "bin_time_end"]
-    },
-    {
-      "joinaggregate": [
-        { "op": "min", "field": "minimum", "as": "absoluteMinimum" },
-        { "op": "max", "field": "maximum", "as": "absoluteMaximum" }
-      ]
-    },
-    {
-      "calculate": "(datum.maximum-datum.absoluteMinimum)/(datum.absoluteMaximum-datum.absoluteMinimum)",
-      "as": "relativeMax"
-    },
-    {
-      "calculate": "(datum.minimum-datum.absoluteMinimum)/(datum.absoluteMaximum-datum.absoluteMinimum)",
-      "as": "relativeMin"
     }
   ],
   "width": "container",

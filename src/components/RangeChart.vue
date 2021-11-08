@@ -16,16 +16,14 @@ export default {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },
-    });
-    /*.then(function (result) {
-        console.log(result.view.data("rangedata"));
+    }); /*.then(function (result) {
+        console.log(result.view._runtime);
       })
       .catch(console.error);*/
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @font-face {
   font-family: Avenir Light;
