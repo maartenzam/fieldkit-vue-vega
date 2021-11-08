@@ -59,16 +59,8 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@font-face {
-  font-family: Avenir Light;
-  src: url("../assets/fonts/Avenir/OpenType CFF Pro/AvenirLTPro-Light.otf");
-}
 .viz {
   width: 100%;
-}
-.mark-text.role-axis-label {
-  font-family: "Avenir Light", sans-serif;
 }
 </style>

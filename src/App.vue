@@ -48,12 +48,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: Avenir Light;
+  src: url("/assets/fonts/Avenir/OpenType CFF Pro/AvenirLTPro-Light.otf");
+}
+
 .charts {
   width: 80%;
   margin: auto;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
