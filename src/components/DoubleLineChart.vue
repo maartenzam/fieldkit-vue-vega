@@ -19,14 +19,11 @@ export default {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },
-    }); /*.then((result) => {
-      console.log(result.vgSpec);
-    });*/
+    });
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @font-face {
   font-family: Avenir Light;

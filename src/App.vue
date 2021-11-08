@@ -1,29 +1,39 @@
 <template>
   <div class="charts">
-    <div class="chart">
-      <DoubleLineChart />
-    </div>
-    <div class="chart">
-      <Scrubber />
-    </div>
-    <div class="chart">
-      <RangeChart />
-    </div>
+    <h1>FieldKit Vega charts</h1>
+    <h2>Line chart</h2>
     <div class="chart">
       <LineChart />
     </div>
+    <h2>Line chart with 2 Y-axes</h2>
+    <div class="chart">
+      <DoubleLineChart />
+    </div>
+    <h2>Range chart</h2>
+    <div class="chart">
+      <RangeChart />
+    </div>
+    <h2>Histogram</h2>
     <div class="chart">
       <Histogram />
+    </div>
+    <h2>Scrubber</h2>
+    <p>
+      The selected time range can be read (see console.log) and set (click the
+      button).
+    </p>
+    <div class="chart">
+      <Scrubber />
     </div>
   </div>
 </template>
 
 <script>
-import Scrubber from "./components/Scrubber.vue";
 import LineChart from "./components/LineChart.vue";
+import DoubleLineChart from "./components/DoubleLineChart.vue";
 import Histogram from "./components/Histogram.vue";
 import RangeChart from "./components/RangeChart.vue";
-import DoubleLineChart from "./components/DoubleLineChart.vue";
+import Scrubber from "./components/Scrubber.vue";
 
 export default {
   name: "App",
@@ -38,13 +48,17 @@ export default {
 </script>
 
 <style>
-.chart {
+.charts {
+  width: 80%;
+  margin: auto;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.chart {
   width: 100%;
 }
 </style>
