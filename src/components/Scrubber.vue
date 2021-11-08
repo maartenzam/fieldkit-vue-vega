@@ -10,6 +10,9 @@ import { default as vegaEmbed } from "vega-embed";
 import scrubberSpec from "../assets/scrubber.vl.json";
 import fieldkitData from "../assets/fieldkitData.json";
 import iconsData from "../assets/iconsData.json";
+import chartConfig from "../assets/chartConfig.json";
+
+scrubberSpec.config = chartConfig;
 
 scrubberSpec.data = { values: fieldkitData.data };
 scrubberSpec.layer[2].data = { values: iconsData.data };

@@ -6,6 +6,9 @@
 import { default as vegaEmbed } from "vega-embed";
 import lineSpec from "../assets/line.vl.json";
 import fieldkitData from "../assets/fieldkitData.json";
+import chartConfig from "../assets/chartConfig.json";
+
+lineSpec.config = chartConfig;
 
 lineSpec.data = { values: fieldkitData.data };
 

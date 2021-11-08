@@ -6,7 +6,9 @@
 import { default as vegaEmbed } from "vega-embed";
 import rangeSpec from "../assets/range.vl.json";
 import fieldkitData from "../assets/fieldkitData.json";
+import chartConfig from "../assets/chartConfig.json";
 
+rangeSpec.config = chartConfig;
 rangeSpec.data = { values: fieldkitData.data, name: "rangedata" };
 
 export default {

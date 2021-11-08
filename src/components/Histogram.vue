@@ -6,6 +6,9 @@
 import { default as vegaEmbed } from "vega-embed";
 import histoSpec from "../assets/histo.vl.json";
 import fieldkitData from "../assets/fieldkitData.json";
+import chartConfig from "../assets/chartConfig.json";
+
+histoSpec.config = chartConfig;
 
 histoSpec.data = { values: fieldkitData.data };
 
