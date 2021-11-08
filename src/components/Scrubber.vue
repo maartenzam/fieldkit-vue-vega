@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button v-on:click="pickRange">Pick date range</button>
+    <button v-on:click="pickRange([1629956332434, 1630344275971])">
+      Pick date range
+    </button>
     <div class="viz scrubber"></div>
   </div>
 </template>
@@ -13,6 +15,7 @@ import iconsData from "../assets/iconsData.json";
 import chartConfig from "../assets/chartConfig.json";
 
 chartConfig.axisX.tickSize = 20;
+chartConfig.view = { fill: "#f4f5f7", stroke: null };
 scrubberSpec.config = chartConfig;
 
 scrubberSpec.data = { values: fieldkitData.data };
@@ -32,28 +35,27 @@ const timeRange = [
 export default {
   name: "Scrubber",
   data() {
-    return { dateRange: { time: timeRange } };
+    return { dateRange: { time: timeRange }, vegaView: null };
   },
   mounted: function () {
     vegaEmbed(".scrubber", scrubberSpec, {
       renderer: "svg",
       actions: { source: false, editor: false, compiled: false },
     }).then((result) => {
-      result.view.addSignalListener("brush", function (name, value) {
-        console.log(value);
+      this.vegaView = result;
+      this.vegaView.view.addSignalListener("brush", function (_, value) {
+        console.log(value.time);
       });
     });
   },
   methods: {
-    pickRange: function () {
-      vegaEmbed(".scrubber", scrubberSpec, {
-        renderer: "svg",
-        actions: { source: false, editor: false, compiled: false },
-      }).then((result) => {
-        result.view.addSignalListener("brush", function (_, value) {
-          console.log(value);
-        });
-        result.view.signal("brush_tuple", {
+    pickRange: function (timeRange) {
+      this.vegaView.view
+        .signal("brush_x", [
+          this.vegaView.view.scale("x")(timeRange[0]),
+          this.vegaView.view.scale("x")(timeRange[1]),
+        ])
+        .signal("brush_tuple", {
           unit: "layer_0",
           fields: [
             {
@@ -62,10 +64,9 @@ export default {
               type: "R",
             },
           ],
-          values: [[1629956332434, 1630344275971]],
-        });
-        result.view.runAsync();
-      });
+          values: [timeRange],
+        })
+        .runAsync();
     },
   },
 };

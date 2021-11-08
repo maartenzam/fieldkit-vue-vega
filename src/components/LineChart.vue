@@ -1,5 +1,8 @@
 <template>
-  <div class="viz linechart"></div>
+  <div>
+    <button v-on:click="downloadChart">Download chart</button>
+    <div class="viz linechart"></div>
+  </div>
 </template>
 
 <script>
