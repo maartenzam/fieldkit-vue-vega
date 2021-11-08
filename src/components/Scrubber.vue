@@ -14,9 +14,9 @@ import fieldkitData from "../assets/fieldkitData.json";
 import iconsData from "../assets/iconsData.json";
 import chartConfig from "../assets/chartConfig.json";
 
-chartConfig.axisX.tickSize = 20;
-chartConfig.view = { fill: "#f4f5f7", stroke: null };
-scrubberSpec.config = chartConfig;
+scrubberSpec.config = JSON.parse(JSON.stringify(chartConfig));
+scrubberSpec.config.axisX.tickSize = 20;
+scrubberSpec.config.view = { fill: "#f4f5f7", stroke: "transparent" };
 
 scrubberSpec.data = { values: fieldkitData.data };
 scrubberSpec.layer[2].data = { values: iconsData.data };

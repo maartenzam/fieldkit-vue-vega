@@ -18,6 +18,7 @@
     "domain": false
   },
   "view": {
+    "fill": "#ffffff",
     "stroke": "transparent"
   }
 }
