@@ -12,15 +12,27 @@ import fieldkitData from "../assets/fieldkitData.json";
 import iconsData from "../assets/iconsData.json";
 import chartConfig from "../assets/chartConfig.json";
 
+chartConfig.axisX.tickSize = 20;
 scrubberSpec.config = chartConfig;
 
 scrubberSpec.data = { values: fieldkitData.data };
 scrubberSpec.layer[2].data = { values: iconsData.data };
 
+const timeRange = [
+  Math.min.apply(
+    null,
+    fieldkitData.data.map((d) => d.time)
+  ),
+  Math.max.apply(
+    null,
+    fieldkitData.data.map((d) => d.time)
+  ),
+];
+
 export default {
   name: "Scrubber",
   data() {
-    return { dateRange: { time: [1630044000000, 1631577600000] } };
+    return { dateRange: { time: timeRange } };
   },
   mounted: function () {
     vegaEmbed(".scrubber", scrubberSpec, {
