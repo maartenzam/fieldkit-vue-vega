@@ -6,12 +6,10 @@
 import { default as vegaEmbed } from "vega-embed";
 import doublelineSpec from "../assets/doubleline.vl.json";
 import fieldkitData from "../assets/fieldkitData.json";
-//import fieldkitWindSpeedData from "../assets/fieldkitWindSpeedData.json";
+import fieldkitWindSpeedData from "../assets/fieldkitWindSpeedData.json";
 
-doublelineSpec.data = { values: fieldkitData.data };
-//doublelineSpec.layer[0].data = { values: fieldkitData.data };
-//doublelineSpec.layer[1].data = { values: fieldkitData.data };
-//doublelineSpec.layer[2].data = { values: fieldkitWindSpeedData.data };
+doublelineSpec.layer[0].data = { values: fieldkitData.data };
+doublelineSpec.layer[1].data = { values: fieldkitWindSpeedData.data };
 
 export default {
   name: "DoubleLineChart",
