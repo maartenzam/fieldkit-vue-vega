@@ -61,6 +61,12 @@ export default {
   color: #2c3e50;
 }
 
+@media screen and (max-width: 640px) {
+  .charts {
+    width: 100%;
+  }
+}
+
 .chart {
   width: 100%;
 }

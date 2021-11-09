@@ -10,32 +10,22 @@
 <script>
 import { default as vegaEmbed } from "vega-embed";
 import scrubberSpec from "../assets/scrubber.vl.json";
-import fieldkitData from "../assets/fieldkitData.json";
+import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
 import iconsData from "../assets/iconsData.json";
 import chartConfig from "../assets/chartConfig.json";
 
 scrubberSpec.config = JSON.parse(JSON.stringify(chartConfig));
+// Some styling overrides. The height of the scrubber can be set with scrubberSpec.height
 scrubberSpec.config.axisX.tickSize = 20;
 scrubberSpec.config.view = { fill: "#f4f5f7", stroke: "transparent" };
 
-scrubberSpec.data = { values: fieldkitData.data };
+scrubberSpec.data = { values: fieldkitBatteryData.data };
 scrubberSpec.layer[2].data = { values: iconsData.data };
-
-const timeRange = [
-  Math.min.apply(
-    null,
-    fieldkitData.data.map((d) => d.time)
-  ),
-  Math.max.apply(
-    null,
-    fieldkitData.data.map((d) => d.time)
-  ),
-];
 
 export default {
   name: "Scrubber",
   data() {
-    return { dateRange: { time: timeRange }, vegaView: null };
+    return { vegaView: null };
   },
   mounted: function () {
     vegaEmbed(".scrubber", scrubberSpec, {

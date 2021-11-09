@@ -5,13 +5,13 @@
 <script>
 import { default as vegaEmbed } from "vega-embed";
 import doublelineSpec from "../assets/doubleline.vl.json";
-import fieldkitData from "../assets/fieldkitData.json";
+import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
 import fieldkitWindSpeedData from "../assets/fieldkitWindSpeedData.json";
 import chartConfig from "../assets/chartConfig.json";
 
 doublelineSpec.config = chartConfig;
 
-doublelineSpec.layer[0].data = { values: fieldkitData.data };
+doublelineSpec.layer[0].data = { values: fieldkitBatteryData.data };
 doublelineSpec.layer[1].data = { values: fieldkitWindSpeedData.data };
 
 export default {

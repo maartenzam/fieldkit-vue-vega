@@ -5,11 +5,11 @@
 <script>
 import { default as vegaEmbed } from "vega-embed";
 import rangeSpec from "../assets/range.vl.json";
-import fieldkitData from "../assets/fieldkitData.json";
+import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
 import chartConfig from "../assets/chartConfig.json";
 
 rangeSpec.config = chartConfig;
-rangeSpec.data = { values: fieldkitData.data, name: "rangedata" };
+rangeSpec.data = { values: fieldkitBatteryData.data, name: "rangedata" };
 
 export default {
   name: "RangeChart",
@@ -18,10 +18,7 @@ export default {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },
-    }); /*.then(function (result) {
-        console.log(result.view._runtime);
-      })
-      .catch(console.error);*/
+    });
   },
 };
 </script>

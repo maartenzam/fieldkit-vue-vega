@@ -9,12 +9,12 @@
 <script>
 import { default as vegaEmbed } from "vega-embed";
 import lineSpec from "../assets/line.vl.json";
-import fieldkitData from "../assets/fieldkitData.json";
+import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
 import chartConfig from "../assets/chartConfig.json";
 
 lineSpec.config = chartConfig;
 
-lineSpec.data = { values: fieldkitData.data };
+lineSpec.data = { values: fieldkitBatteryData.data };
 
 export default {
   name: "LineChart",
@@ -28,8 +28,8 @@ export default {
     });
   },
   methods: {
+    // From https://vega.github.io/vega/docs/api/view/#view_toImageURL
     downloadChart: function (fileFormat) {
-      console.log(fileFormat);
       this.vegaView.view
         .toImageURL(fileFormat, 2)
         .then(function (url) {
