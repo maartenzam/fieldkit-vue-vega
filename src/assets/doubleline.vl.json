@@ -51,6 +51,21 @@
       },
       "layer": [
         {
+          "params": [
+            {
+              "name": "highlight",
+              "select": {
+                "type": "point",
+                "on": "click"
+              }
+            }
+          ],
+          "encoding": {
+            "opacity": {
+              "condition": { "param": "highlight", "value": 1 },
+              "value": 0.2
+            }
+          },
           "mark": {
             "type": "line",
             "color": {
@@ -147,6 +162,12 @@
       },
       "layer": [
         {
+          "encoding": {
+            "opacity": {
+              "condition": { "param": "highlight", "value": 0.2 },
+              "value": 1
+            }
+          },
           "mark": {
             "type": "line",
             "color": {
@@ -178,8 +199,7 @@
           "mark": {
             "type": "point",
             "filled": true,
-            "size": 30,
-            "opacity": 1
+            "size": 30
           },
           "encoding": {
             "fill": {
@@ -187,6 +207,13 @@
               "type": "quantitative",
               "scale": { "scheme": "inferno", "reverse": false },
               "legend": null
+            },
+            "opacity": {
+              "condition": {
+                "param": "highlight",
+                "value": 0
+              },
+              "value": 1
             }
           }
         },
