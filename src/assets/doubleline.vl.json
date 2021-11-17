@@ -26,6 +26,10 @@
       "name": "tension",
       "value": 1,
       "bind": { "input": "range", "min": 0, "max": 1, "step": 0.05 }
+    },
+    {
+      "name": "toggleHighlight",
+      "bind": { "input": "checkbox" }
     }
   ],
   "encoding": {
@@ -46,7 +50,10 @@
           "field": "value",
           "type": "quantitative",
           "title": "Battery charge (%)",
-          "scale": { "zero": false }
+          "scale": { "zero": false },
+          "axis": {
+            "titleOpacity": { "expr": "toggleHighlight == true ? 0.2 : 1" }
+          }
         }
       },
       "layer": [
@@ -62,7 +69,7 @@
           ],
           "encoding": {
             "opacity": {
-              "condition": { "param": "highlight", "value": 1 },
+              "condition": { "param": "toggleHighlight", "value": 1 },
               "value": 0.2
             }
           },
@@ -106,6 +113,13 @@
               "type": "quantitative",
               "scale": { "scheme": "inferno", "reverse": false },
               "legend": null
+            },
+            "opacity": {
+              "condition": {
+                "param": "toggleHighlight",
+                "value": 1
+              },
+              "value": 0
             }
           }
         },
@@ -157,14 +171,17 @@
           "field": "value",
           "type": "quantitative",
           "title": "Wind speed (mph)",
-          "scale": { "zero": false }
+          "scale": { "zero": false },
+          "axis": {
+            "titleOpacity": { "expr": "toggleHighlight == true ? 1 : 0.2" }
+          }
         }
       },
       "layer": [
         {
           "encoding": {
             "opacity": {
-              "condition": { "param": "highlight", "value": 0.2 },
+              "condition": { "param": "toggleHighlight", "value": 0.2 },
               "value": 1
             }
           },
@@ -210,7 +227,7 @@
             },
             "opacity": {
               "condition": {
-                "param": "highlight",
+                "param": "toggleHighlight",
                 "value": 0
               },
               "value": 1
