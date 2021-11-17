@@ -5,14 +5,16 @@
 <script>
 import { default as vegaEmbed } from "vega-embed";
 import doublelineSpec from "../assets/doubleline.vl.json";
-import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
-import fieldkitWindSpeedData from "../assets/fieldkitWindSpeedData.json";
+import fieldkitHumidityData from "../assets/fieldkitHumidityData.json";
+import fieldkitTemperatureData from "../assets/fieldkitTemperatureData.json";
 import chartConfig from "../assets/chartConfig.json";
 
 doublelineSpec.config = chartConfig;
 
-doublelineSpec.layer[0].data = { values: fieldkitBatteryData.data };
-doublelineSpec.layer[1].data = { values: fieldkitWindSpeedData.data };
+doublelineSpec.layer[0].data = { values: fieldkitHumidityData.data };
+doublelineSpec.layer[0].encoding.y.title = "Humidity (%)";
+doublelineSpec.layer[1].data = { values: fieldkitTemperatureData.data };
+doublelineSpec.layer[1].encoding.y.title = "Temperature (°F)";
 
 export default {
   name: "DoubleLineChart",

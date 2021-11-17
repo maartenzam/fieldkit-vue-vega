@@ -4,6 +4,10 @@
   "width": "container",
   "params": [
     {
+      "name": "toggleHighlight",
+      "bind": { "input": "checkbox" }
+    },
+    {
       "name": "interpolate",
       "value": "bundle",
       "bind": {
@@ -26,10 +30,6 @@
       "name": "tension",
       "value": 1,
       "bind": { "input": "range", "min": 0, "max": 1, "step": 0.05 }
-    },
-    {
-      "name": "toggleHighlight",
-      "bind": { "input": "checkbox" }
     }
   ],
   "encoding": {
@@ -52,21 +52,13 @@
           "title": "Battery charge (%)",
           "scale": { "zero": false },
           "axis": {
-            "titleOpacity": { "expr": "toggleHighlight == true ? 0.2 : 1" }
+            "titleOpacity": { "expr": "toggleHighlight == true ? 1 : 0.2" },
+            "labelOpacity": { "expr": "toggleHighlight == true ? 1 : 0.2" }
           }
         }
       },
       "layer": [
         {
-          "params": [
-            {
-              "name": "highlight",
-              "select": {
-                "type": "point",
-                "on": "click"
-              }
-            }
-          ],
           "encoding": {
             "opacity": {
               "condition": { "param": "toggleHighlight", "value": 1 },
@@ -173,7 +165,8 @@
           "title": "Wind speed (mph)",
           "scale": { "zero": false },
           "axis": {
-            "titleOpacity": { "expr": "toggleHighlight == true ? 1 : 0.2" }
+            "titleOpacity": { "expr": "toggleHighlight == true ? 0.2 : 1" },
+            "labelOpacity": { "expr": "toggleHighlight == true ? 0.2 : 1" }
           }
         }
       },
