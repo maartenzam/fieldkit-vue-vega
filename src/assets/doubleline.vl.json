@@ -49,11 +49,11 @@
         "y": {
           "field": "value",
           "type": "quantitative",
-          "title": "Battery charge (%)",
+          "title": null,
           "scale": { "zero": false },
           "axis": {
-            "titleOpacity": { "expr": "toggleHighlight == true ? 1 : 0.2" },
-            "labelOpacity": { "expr": "toggleHighlight == true ? 1 : 0.2" }
+            "titleOpacity": { "expr": "toggleHighlight ? 0.2 : 1" },
+            "labelOpacity": { "expr": "toggleHighlight ? 0.2 : 1" }
           }
         }
       },
@@ -61,8 +61,8 @@
         {
           "encoding": {
             "opacity": {
-              "condition": { "param": "toggleHighlight", "value": 1 },
-              "value": 0.2
+              "condition": { "param": "toggleHighlight", "value": 0.2 },
+              "value": 1
             }
           },
           "mark": {
@@ -109,9 +109,9 @@
             "opacity": {
               "condition": {
                 "param": "toggleHighlight",
-                "value": 1
+                "value": 0
               },
-              "value": 0
+              "value": 1
             }
           }
         },
@@ -162,11 +162,11 @@
         "y": {
           "field": "value",
           "type": "quantitative",
-          "title": "Wind speed (mph)",
+          "title": null,
           "scale": { "zero": false },
           "axis": {
-            "titleOpacity": { "expr": "toggleHighlight == true ? 0.2 : 1" },
-            "labelOpacity": { "expr": "toggleHighlight == true ? 0.2 : 1" }
+            "titleOpacity": { "expr": "toggleHighlight ? 1 : 0.2" },
+            "labelOpacity": { "expr": "toggleHighlight ? 1 : 0.2" }
           }
         }
       },
@@ -174,8 +174,8 @@
         {
           "encoding": {
             "opacity": {
-              "condition": { "param": "toggleHighlight", "value": 0.2 },
-              "value": 1
+              "condition": { "param": "toggleHighlight", "value": 1 },
+              "value": 0.2
             }
           },
           "mark": {
@@ -221,9 +221,9 @@
             "opacity": {
               "condition": {
                 "param": "toggleHighlight",
-                "value": 0
+                "value": 1
               },
-              "value": 1
+              "value": 0
             }
           }
         },
