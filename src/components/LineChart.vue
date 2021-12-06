@@ -25,6 +25,9 @@ export default {
       actions: { source: false, editor: false, compiled: false },
     }).then((result) => {
       this.vegaView = result;
+      result.view.addSignalListener("brush", function (_, value) {
+        console.log(value.time);
+      });
     });
   },
   methods: {

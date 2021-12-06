@@ -131,6 +131,10 @@
             "on": "mouseover",
             "clear": "mouseout"
           }
+        },
+        {
+          "name": "brush",
+          "select": { "type": "interval", "encodings": ["x"] }
         }
       ]
     }
