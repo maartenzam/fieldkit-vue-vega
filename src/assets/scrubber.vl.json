@@ -12,7 +12,14 @@
         "format": "%Y-%m-%d"
       }
     },
-    "y": { "field": "value", "type": "quantitative" }
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "titleOpacity": 0,
+        "labelOpacity": 0
+      }
+    }
   },
   "layer": [
     {

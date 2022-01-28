@@ -33,9 +33,13 @@ export default {
       actions: { source: false, editor: false, compiled: false },
     }).then((result) => {
       this.vegaView = result;
+      let timeValue = []
       this.vegaView.view.addSignalListener("brush", function (_, value) {
-        console.log(value.time);
+        timeValue = value.time;
       });
+      this.vegaView.view.addEventListener("mouseup", function(){
+        console.log(timeValue)
+        })
     });
   },
   methods: {
