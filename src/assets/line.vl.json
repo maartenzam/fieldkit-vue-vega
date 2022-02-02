@@ -34,7 +34,11 @@
       "type": "temporal",
       "axis": {
         "formatType": "time",
-        "format": "%Y-%m-%d"
+        "tickCount": 8,
+        "labelPadding": -24,
+        "tickSize": 30,
+        "gridDash": [2,2],
+        "tickDash": [2,2]
       }
     }
   },
@@ -44,6 +48,9 @@
         "y": {
           "field": "value",
           "type": "quantitative",
+          "axis": {
+            "gridDash": [2,2]
+          },
           "title": "Battery charge (%)",
           "scale": { "zero": false }
         }

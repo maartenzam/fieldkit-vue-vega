@@ -27,7 +27,10 @@
       "type": "temporal",
       "axis": {
         "formatType": "time",
-        "format": "%Y-%m-%d"
+        "tickCount": 8,
+        "grid": false,
+        "domain": true,
+        "domainColor": "#cccccc"
       },
       "title": null
     },
@@ -38,7 +41,10 @@
     "y": {
       "field": "minimum",
       "type": "quantitative",
-      "scale": { "zero": false }
+      "scale": { "zero": false },
+      "axis": {
+        "grid": false
+      }
     },
     "y2": { "field": "maximum" },
     "tooltip": [

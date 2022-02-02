@@ -38,7 +38,11 @@
       "type": "temporal",
       "axis": {
         "formatType": "time",
-        "format": "%Y-%m-%d"
+        "tickCount": 8,
+        "labelPadding": -24,
+        "tickSize": 30,
+        "gridDash": [2,2],
+        "tickDash": [2,2]
       }
     }
   },
@@ -53,7 +57,10 @@
           "scale": { "zero": false },
           "axis": {
             "titleOpacity": { "expr": "toggleHighlight ? 0.2 : 1" },
-            "labelOpacity": { "expr": "toggleHighlight ? 0.2 : 1" }
+            "labelOpacity": { "expr": "toggleHighlight ? 0.2 : 1" },
+            "grid": true,
+            "gridDash": [2,2],
+            "gridOpacity": { "expr": "toggleHighlight ? 0 : 1" }
           }
         }
       },
@@ -166,7 +173,10 @@
           "scale": { "zero": false },
           "axis": {
             "titleOpacity": { "expr": "toggleHighlight ? 1 : 0.2" },
-            "labelOpacity": { "expr": "toggleHighlight ? 1 : 0.2" }
+            "labelOpacity": { "expr": "toggleHighlight ? 1 : 0.2" },
+            "grid": true,
+            "gridDash": [2,2],
+            "gridOpacity": { "expr": "toggleHighlight ? 1 : 0" }
           }
         }
       },

@@ -6,16 +6,14 @@
     "titleFont": "Avenir Light",
     "titleFontSize": 14,
     "titlePadding": 20,
-    "grid": false,
     "tickSize": 10,
     "tickOpacity": 0,
-    "domainColor": "#d8dce0"
+    "domain": false
   },
   "axisX": {
     "title": null
   },
   "axisY": {
-    "domain": false
   },
   "view": {
     "fill": "#ffffff",

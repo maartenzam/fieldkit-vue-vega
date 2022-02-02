@@ -9,7 +9,8 @@
       "type": "temporal",
       "axis": {
         "formatType": "time",
-        "format": "%Y-%m-%d"
+        "tickCount": 8,
+        "grid": false
       }
     },
     "y": {
@@ -17,7 +18,8 @@
       "type": "quantitative",
       "axis": {
         "titleOpacity": 0,
-        "labelOpacity": 0
+        "labelOpacity": 0,
+        "grid": false
       }
     }
   },

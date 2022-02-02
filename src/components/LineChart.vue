@@ -9,10 +9,12 @@
 <script>
 import { default as vegaEmbed } from "vega-embed";
 import lineSpec from "../assets/line.vl.json";
-import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
+//import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
+import fieldkitBatteryData from "../assets/fieldkitPhMissingData.json";
 import chartConfig from "../assets/chartConfig.json";
 
 lineSpec.config = chartConfig;
+//lineSpec.config.axis.grid = true;
 
 lineSpec.data = { values: fieldkitBatteryData.data };
 
