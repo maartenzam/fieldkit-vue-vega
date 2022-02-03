@@ -3,7 +3,10 @@
     <h1>FieldKit Vega charts</h1>
     <h2>Line chart</h2>
     <div class="chart">
-      <LineChart />
+      <LineChart v-bind:customColors="false" id="linechart1"></LineChart>
+    </div>
+    <div class="chart">
+      <LineChart v-bind:customColors="true" id="linechart2"></LineChart>
     </div>
     <h2>Line chart with 2 Y-axes</h2>
     <div class="chart">

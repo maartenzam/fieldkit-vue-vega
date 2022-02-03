@@ -2,7 +2,7 @@
   <div>
     <button v-on:click="downloadChart('png')">Download chart png</button>
     <button v-on:click="downloadChart('svg')">Download chart svg</button>
-    <div class="viz linechart"></div>
+    <div class="viz linechart" :id="this.id"></div>
   </div>
 </template>
 
@@ -16,41 +16,96 @@ import chartConfig from "../assets/chartConfig.json";
 lineSpec.config = chartConfig;
 lineSpec.data = { values: fieldkitBatteryData.data };
 
-let thresholds = [8, 8.5, 9, 9.5, 10]
-let thresholdLabels = ["No flooding", "Almost no flooding", "A little bit of flooding", "Flooding", "A lot of flooding"]
-let thresholdColors = ["#00CCFF", "#0099FF","#0066FF","#0033FF","#0000FF"]
+let thresholds = [
+  {
+    value: 8,
+    label: "No Flooding",
+    color: "#00CCFF",
+  },
+  {
+    value: 8.5,
+    label: "Almost no flooding",
+    color: "#0099FF",
+  },
+  {
+    value: 9,
+    label: "A little bit of flooding",
+    color: "#0066FF",
+  },
+  {
+    value: 9.5,
+    label: "Flooding",
+    color: "#0033FF",
+  },
+  {
+    value: 10,
+    label: "A lot of flooding",
+    color: "#0000FF",
+  },
+];
 
-let thresholdLayers = thresholds.map((d,i) => {
-  return ({
-      "transform": [
-          {
-            "calculate": "datum.value <= " + d + " ? datum.value : null",
-            "as": "layerValue" + i
-          },
-          {
-            "calculate": "datum.layerValue" + i + " <= " + d + " ? '" + thresholdLabels[i] + "' : null",
-            "as": "Grade of flooding"
-          }
-        ],
-        "encoding": {
-          "y": {"field": "layerValue" + i},
-          "stroke": {"field": "Grade of flooding", "scale": {"domain": thresholdLabels, "range": thresholdColors}}
+const thresholdLayers = thresholds
+  .map((d, i) => {
+    return {
+      transform: [
+        {
+          calculate: "datum.value <= " + d.value + " ? datum.value : null",
+          as: "layerValue" + i,
         },
-          "mark": {
-            "type": "line",
-            "interpolate": { "expr": "interpolate" },
-            "tension": { "expr": "tension" }
-          }
-    }
-  )
-}).reverse()
-
-lineSpec.layer[0].layer = thresholdLayers
+        {
+          calculate:
+            "datum.layerValue" +
+            i +
+            " <= " +
+            d.value +
+            " ? '" +
+            d.label +
+            "' : null",
+          as: "Grade of flooding",
+        },
+      ],
+      encoding: {
+        y: { field: "layerValue" + i },
+        stroke: {
+          field: "Grade of flooding",
+          legend: {
+            orient: "top",
+          },
+          scale: {
+            domain: thresholds.map((d) => d.label),
+            range: thresholds.map((d) => d.color),
+          },
+        },
+      },
+      mark: {
+        type: "line",
+        interpolate: { expr: "interpolate" },
+        tension: { expr: "tension" },
+      },
+    };
+  })
+  .reverse();
 
 export default {
   name: "LineChart",
+  props: ["customColors", "id"],
+  data: function () {
+    return {
+      customcolors: this.customColors,
+      spec: JSON.parse(JSON.stringify(lineSpec)),
+    };
+  },
+  computed: {
+    finalSpec: function () {
+      let finalSpec = this.spec;
+      if (this.customcolors) {
+        finalSpec.layer[0].layer = thresholdLayers;
+      }
+      return finalSpec;
+    },
+  },
   mounted: function () {
-    vegaEmbed(".linechart", lineSpec, {
+    vegaEmbed("#" + this.id, this.finalSpec, {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },
