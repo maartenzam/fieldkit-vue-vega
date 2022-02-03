@@ -5,7 +5,7 @@
   "params": [
     {
       "name": "interpolate",
-      "value": "bundle",
+      "value": "cardinal",
       "bind": {
         "input": "select",
         "options": [
@@ -24,7 +24,7 @@
     },
     {
       "name": "tension",
-      "value": 1,
+      "value": 0.9,
       "bind": { "input": "range", "min": 0, "max": 1, "step": 0.05 }
     }
   ],
@@ -51,11 +51,25 @@
           "axis": {
             "gridDash": [2,2]
           },
-          "title": "Battery charge (%)",
+          "title": "pH",
           "scale": { "zero": false }
         }
       },
       "layer": [
+        { "transform": [
+          {
+            "filter": {"field": "value", "valid": true}
+          }
+        ],
+          "mark": {
+            "type": "line",
+            "color": "#bbbbbb",
+            "strokeWidth": 1,
+            "strokeDash": [4,4],
+            "interpolate": { "expr": "interpolate" },
+            "tension": { "expr": "tension" }
+          }
+        },
         {
           "mark": {
             "type": "line",

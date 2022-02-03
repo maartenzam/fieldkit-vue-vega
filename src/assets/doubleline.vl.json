@@ -9,7 +9,7 @@
     },
     {
       "name": "interpolate",
-      "value": "bundle",
+      "value": "cardinal",
       "bind": {
         "input": "select",
         "options": [
@@ -28,7 +28,7 @@
     },
     {
       "name": "tension",
-      "value": 1,
+      "value": 0.9,
       "bind": { "input": "range", "min": 0, "max": 1, "step": 0.05 }
     }
   ],
@@ -65,6 +65,26 @@
         }
       },
       "layer": [
+        {
+          "encoding": {
+            "opacity": {
+              "condition": { "param": "toggleHighlight", "value": 0.2 }, "value": 1
+            }
+          },
+          "transform": [
+            {
+              "filter": {"field": "value", "valid": true}
+            }
+          ],
+          "mark": {
+            "type": "line",
+            "color": "#bbbbbb",
+            "strokeWidth": 2,
+            "strokeDash": [4,4],
+            "interpolate": { "expr": "interpolate" },
+            "tension": { "expr": "tension" }
+          }
+        },
         {
           "encoding": {
             "opacity": {
@@ -181,6 +201,27 @@
         }
       },
       "layer": [
+        {
+          "encoding": {
+            "opacity": {
+              "condition": { "param": "toggleHighlight", "value": 1 },
+              "value": 0.2
+            }
+          },
+          "transform": [
+            {
+              "filter": {"field": "value", "valid": true}
+            }
+          ],
+          "mark": {
+            "type": "line",
+            "color": "#bbbbbb",
+            "strokeWidth": 2,
+            "strokeDash": [4,4],
+            "interpolate": { "expr": "interpolate" },
+            "tension": { "expr": "tension" }
+          }
+        },
         {
           "encoding": {
             "opacity": {
