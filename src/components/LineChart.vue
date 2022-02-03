@@ -14,9 +14,38 @@ import fieldkitBatteryData from "../assets/fieldkitPhMissingData.json";
 import chartConfig from "../assets/chartConfig.json";
 
 lineSpec.config = chartConfig;
-//lineSpec.config.axis.grid = true;
-
 lineSpec.data = { values: fieldkitBatteryData.data };
+
+let thresholds = [8, 8.5, 9, 9.5, 10]
+let thresholdLabels = ["No flooding", "Almost no flooding", "A little bit of flooding", "Flooding", "A lot of flooding"]
+let thresholdColors = ["#00CCFF", "#0099FF","#0066FF","#0033FF","#0000FF"]
+
+let thresholdLayers = thresholds.map((d,i) => {
+  return ({
+      "transform": [
+          {
+            "calculate": "datum.value <= " + d + " ? datum.value : null",
+            "as": "layerValue" + i
+          },
+          {
+            "calculate": "datum.layerValue" + i + " <= " + d + " ? '" + thresholdLabels[i] + "' : null",
+            "as": "Grade of flooding"
+          }
+        ],
+        "encoding": {
+          "y": {"field": "layerValue" + i},
+          "stroke": {"field": "Grade of flooding", "scale": {"domain": thresholdLabels, "range": thresholdColors}}
+        },
+          "mark": {
+            "type": "line",
+            "interpolate": { "expr": "interpolate" },
+            "tension": { "expr": "tension" }
+          }
+    }
+  )
+}).reverse()
+
+lineSpec.layer[0].layer = thresholdLayers
 
 export default {
   name: "LineChart",
