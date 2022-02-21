@@ -99,7 +99,10 @@ export default {
     finalSpec: function () {
       let finalSpec = this.spec;
       if (this.customcolors) {
-        finalSpec.layer[0].layer = thresholdLayers;
+        //Overwrite line layer
+        finalSpec.layer[0].layer[1].layer = thresholdLayers;
+        //Remove layer with dots
+        finalSpec.layer[0].layer.splice(2,1)
       }
       return finalSpec;
     },
