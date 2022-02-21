@@ -12,6 +12,9 @@
     <div class="chart">
       <DoubleLineChart />
     </div>
+    <div class="chart">
+      <DoubleScrubber />
+    </div>
     <h2>Range chart</h2>
     <div class="chart">
       <RangeChart />
@@ -37,6 +40,7 @@ import DoubleLineChart from "./components/DoubleLineChart.vue";
 import Histogram from "./components/Histogram.vue";
 import RangeChart from "./components/RangeChart.vue";
 import Scrubber from "./components/Scrubber.vue";
+import DoubleScrubber from "./components/DoubleScrubber.vue";
 
 export default {
   name: "App",
@@ -46,6 +50,7 @@ export default {
     RangeChart,
     Scrubber,
     DoubleLineChart,
+    DoubleScrubber
   },
 };
 </script>

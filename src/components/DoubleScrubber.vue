@@ -1,29 +1,32 @@
 <template>
   <div>
-    <button v-on:click="pickRange([1629956332434, 1630344275971])">
+    <button v-on:click="pickRange([1606624513692, 1607982580082])">
       Pick date range
     </button>
-    <div class="viz scrubber"></div>
+    <div class="viz doublescrubber"></div>
   </div>
 </template>
 
 <script>
 import { default as vegaEmbed } from "vega-embed";
-import scrubberSpec from "../assets/scrubber.vl.json";
-import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
-import iconsData from "../assets/iconsData.json";
+import scrubberSpec from "../assets/doublescrubber.vl.json";
+//import fieldkitBatteryData from "../assets/fieldkitBatteryData.json";
+import fieldkitHumidityData from "../assets/fieldkitHumidityData.json";
+import fieldkitTemperatureData from "../assets/fieldkitTemperatureData.json";
+import iconsData from "../assets/iconsData2.json";
 import chartConfig from "../assets/chartConfig.json";
 
 scrubberSpec.config = JSON.parse(JSON.stringify(chartConfig));
 const height = 50;
 
 scrubberSpec.height = height;
-scrubberSpec.layer[2].encoding.y = {"value": height};
+scrubberSpec.layer[3].encoding.y = {"value": height};
 scrubberSpec.config.axisX.tickSize = 20;
 scrubberSpec.config.view = { fill: "#f4f5f7", stroke: "transparent" };
 
-scrubberSpec.data = { values: fieldkitBatteryData.data };
-scrubberSpec.layer[2].data = { values: iconsData.data };
+scrubberSpec.data = { values: fieldkitHumidityData.data };
+scrubberSpec.layer[2].data = { values: fieldkitTemperatureData.data };
+scrubberSpec.layer[3].data = { values: iconsData.data };
 
 export default {
   name: "Scrubber",
@@ -31,7 +34,7 @@ export default {
     return { vegaView: null };
   },
   mounted: function () {
-    vegaEmbed(".scrubber", scrubberSpec, {
+    vegaEmbed(".doublescrubber", scrubberSpec, {
       renderer: "svg",
       actions: { source: false, editor: false, compiled: false },
     }).then((result) => {
@@ -43,12 +46,12 @@ export default {
       this.vegaView.view.addEventListener("mouseup", function () {
         console.log(timeValue);
       });
-      let wheeling;
+      let wheeling
       this.vegaView.view.addEventListener("wheel", function () {
-        clearTimeout(wheeling);
-        wheeling = setTimeout(function () {
-          console.log(timeValue);
-        }, 50);
+        clearTimeout(wheeling)
+        wheeling = setTimeout(function(){
+            console.log(timeValue);
+        },50)
       });
     });
   },

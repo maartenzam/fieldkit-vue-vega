@@ -11,15 +11,6 @@
         "tickCount": 8,
         "grid": false
       }
-    },
-    "y": {
-      "field": "value",
-      "type": "quantitative",
-      "axis": {
-        "titleOpacity": 0,
-        "labelOpacity": 0,
-        "grid": false
-      }
     }
   },
   "layer": [
@@ -30,11 +21,35 @@
           "select": { "type": "interval", "encodings": ["x"] }
         }
       ],
-      "mark": { "type": "area", "color": "#DCDEDF" }
+      "mark": { "type": "line", "color": "#DCDEDF", "opacity": 0}
     },
     {
-      "transform": [{ "filter": { "param": "brush" } }],
-      "mark": { "type": "area", "color": "#52b5e4" }
+      "mark": { "type": "line", "color": "#52b5e4" },
+      "encoding": {
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {
+            "titleOpacity": 0,
+            "labelOpacity": 0,
+            "grid": false
+          }
+        }
+      }
+    },
+    {
+      "mark": { "type": "line", "color": "red" },
+      "encoding": {
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {
+            "titleOpacity": 0,
+            "labelOpacity": 0,
+            "grid": false
+          }
+        }
+      }
     },
     {
       "mark": { "type": "image", "width": 30, "height": 30 },
@@ -44,5 +59,5 @@
       }
     }
   ],
-  "resolve": { "axis": { "x": "shared", "y": "shared" } }
+  "resolve": { "scale": { "x": "shared", "y": "independent" } }
 }
