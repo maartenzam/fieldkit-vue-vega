@@ -122,6 +122,9 @@
           "encoding": {
             "tooltip": [
               {
+                "field": "name"
+              },
+              {
                 "field": "value",
                 "type": "quantitative",
                 "formatType": "number",
@@ -216,6 +219,9 @@
           },
           "encoding": {
             "tooltip": [
+              {
+                "field": "name"
+              },
               {
                 "field": "value",
                 "type": "quantitative",

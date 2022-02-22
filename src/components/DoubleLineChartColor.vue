@@ -14,6 +14,14 @@ doublelineSpec.config = chartConfig;
 const colorLeft = "#5736FF";
 const colorRight = "#3fab29";
 
+fieldkitHumidityData.data.forEach(item => {
+  item.name = "Humidity"
+})
+fieldkitTemperatureData.data.forEach(item => {
+  item.name = "Temperature"
+})
+
+
 doublelineSpec.layer[0].data = { values: fieldkitHumidityData.data };
 doublelineSpec.layer[0].encoding.y.title = "Humidity (%)";
 doublelineSpec.layer[0].layer[1].mark.color = colorLeft;
