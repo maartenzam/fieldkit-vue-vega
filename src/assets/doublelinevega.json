@@ -33,7 +33,7 @@
         "name": "hover",
         "value": {"name": "Humidity"},
         "on": [
-          {"events": "line:mouseover", "update": "datum"}
+          {"events": "symbol:mouseover", "update": "datum"}
         ]
       }
   ],
@@ -46,7 +46,7 @@
     {
         "name": "table2",
         "values": []
-      }
+    }
   ],
 
   "scales": [
@@ -85,8 +85,22 @@
         "labelPadding": -24,
         "tickSize": 30,
         "tickDash": [2, 2]},
-    {"orient": "left", "scale": "y", "tickCount": 5},
-    {"orient": "right", "scale": "y2", "tickCount": 5}
+    {
+        "orient": "left",
+        "scale": "y",
+        "tickCount": 5,
+        "titleOpacity": {"signal": "hover.name == 'Humidity' ? 1 : 0.2"},
+        "gridOpacity": {"signal": "hover.name == 'Humidity' ? 1 : 0.2"},
+        "labelOpacity": {"signal": "hover.name == 'Humidity' ? 1 : 0.2"}
+    },
+    {
+        "orient": "right",
+        "scale": "y2",
+        "tickCount": 5,
+        "titleOpacity": {"signal": "hover.name == 'Temperature' ? 1 : 0.2"},
+        "gridOpacity": {"signal": "hover.name == 'Temperature' ? 1 : 0.2"},
+        "labelOpacity": {"signal": "hover.name == 'Temperature' ? 1 : 0.2"}
+    }
   ],
 
   "marks": [
@@ -105,16 +119,34 @@
           "from": {"data": "series"},
           "encode": {
             "enter": {
+            "interpolate": {"value": "cardinal"},
+            "tension": {"value": 0.9},
               "x": {"scale": "x", "field": "time"},
               "y": {"scale": "y", "field": "value"},
               "stroke": {"value": null},
               "strokeWidth": {"value": 2}
             },
             "update": {
-              "strokeOpacity": {"signal": "hover.name == 'Humidity' ? 1 : 0.5"}
+              "strokeOpacity": {"signal": "hover.name == 'Humidity' ? 1 : 0.3"}
             }
           }
-        }
+        },
+        {
+            "type": "symbol",
+            "from": {"data": "series"},
+            "encode": {
+              "enter": {
+                "x": {"scale": "x", "field": "time"},
+                "y": {"scale": "y", "field": "value"},
+                "stroke": {"value": null},
+                "strokeWidth": {"value": 2},
+                "size": {"value": 100},
+                "tooltip": {"signal": "{'Humidity': join([round(datum.value*10)/10, '%'], ' ')}"},
+                "fill": {"value": "red"},
+                "fillOpacity": {"value": 0}
+              }
+            }
+          }
       ]
     },
     {
@@ -132,13 +164,31 @@
             "from": {"data": "series2"},
             "encode": {
               "enter": {
+                "interpolate": {"value": "cardinal"},
+                "tension": {"value": 0.9},
                 "x": {"scale": "x2", "field": "time"},
                 "y": {"scale": "y2", "field": "value"},
                 "stroke": {"value": null},
                 "strokeWidth": {"value": 2}
               },
               "update": {
-                "strokeOpacity": {"signal": "hover.name == 'Temperature' ? 1 : 0.5"}
+                "strokeOpacity": {"signal": "hover.name == 'Temperature' ? 1 : 0.3"}
+              }
+            }
+          },
+        {
+            "type": "symbol",
+            "from": {"data": "series2"},
+            "encode": {
+              "enter": {
+                "x": {"scale": "x", "field": "time"},
+                "y": {"scale": "y2", "field": "value"},
+                "stroke": {"value": null},
+                "strokeWidth": {"value": 2},
+                "size": {"value": 100},
+                "tooltip": {"signal": "{'Temperature': join([round(datum.value*10)/10, '°F'], ' ')}"},
+                "fill": {"value": "red"},
+                "fillOpacity": {"value": 0}
               }
             }
           }
