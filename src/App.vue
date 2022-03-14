@@ -3,6 +3,9 @@
     <h1>FieldKit Vega charts</h1>
     <h2>Line chart</h2>
     <div class="chart">
+      <DoubleLineChartVega/>
+    </div>
+    <div class="chart">
       <LineChart v-bind:customColors="false" id="linechart1"></LineChart>
     </div>
     <div class="chart">
@@ -41,6 +44,7 @@
 import LineChart from "./components/LineChart.vue";
 import DoubleLineChart from "./components/DoubleLineChart.vue";
 import DoubleLineChartColor from "./components/DoubleLineChartColor.vue";
+import DoubleLineChartVega from "./components/DoubleLineChartVega.vue";
 import Histogram from "./components/Histogram.vue";
 import RangeChart from "./components/RangeChart.vue";
 import Scrubber from "./components/Scrubber.vue";
@@ -55,6 +59,7 @@ export default {
     Scrubber,
     DoubleLineChart,
     DoubleLineChartColor,
+    DoubleLineChartVega,
     DoubleScrubber
   },
 };
