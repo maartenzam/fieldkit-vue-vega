@@ -1,43 +1,51 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A basic line chart example.",
-  "width": 500,
-  "height": 200,
+  "autosize": { "type": "fit", "contains": "padding" },
   "padding": 5,
-
+  "config": {
+    "axis": {
+        "labelFont": "Avenir Light",
+        "labelFontSize": 12,
+        "labelColor": "#6a6d71",
+        "titleFont": "Avenir Light",
+        "titleFontSize": 14,
+        "titlePadding": 20,
+        "tickSize": 10,
+        "tickOpacity": 0,
+        "domain": false,
+        "grid": true,
+        "gridDash": [2, 2]
+    }
+  },
   "signals": [
+    {
+        "name": "width",
+        "init": "containerSize()[0]",
+        "on": [{ "events": "window:resize", "update": "containerSize()[0]" }]
+      },
+      {
+        "name": "height",
+        "init": "containerSize()[1]",
+        "on": [{ "events": "window:resize", "update": "containerSize()[1]" }]
+      },
+      {
+        "name": "hover",
+        "value": {"name": "Humidity"},
+        "on": [
+          {"events": "line:mouseover", "update": "datum"}
+        ]
+      }
   ],
 
   "data": [
     {
       "name": "table1",
-      "values": [
-        {"x": 0, "y": 28, "c":0},
-        {"x": 1, "y": 43, "c":0},
-        {"x": 2, "y": 81, "c":0},
-        {"x": 3, "y": 19, "c":0},
-        {"x": 4, "y": 52, "c":0},
-        {"x": 5, "y": 24, "c":0},
-        {"x": 6, "y": 87, "c":0},
-        {"x": 7, "y": 17, "c":0},
-        {"x": 8, "y": 68, "c":0},
-        {"x": 9, "y": 49, "c":0}
-      ]
+      "values": []
     },
     {
         "name": "table2",
-        "values": [
-          {"x": 0, "y": 20, "c":1},
-          {"x": 1, "y": 35, "c":1},
-          {"x": 2, "y": 10, "c":1},
-          {"x": 3, "y": 15, "c":1},
-          {"x": 4, "y": 48, "c":1},
-          {"x": 5, "y": 28, "c":1},
-          {"x": 6, "y": 66, "c":1},
-          {"x": 7, "y": 27, "c":1},
-          {"x": 8, "y": 16, "c":1},
-          {"x": 9, "y": 25, "c":1}
-        ]
+        "values": []
       }
   ],
 
@@ -73,9 +81,12 @@
   ],
 
   "axes": [
-    {"orient": "bottom", "scale": "x"},
-    {"orient": "left", "scale": "y"},
-    {"orient": "right", "scale": "y2"}
+    {"orient": "bottom", "scale": "x", "tickCount": 8,
+        "labelPadding": -24,
+        "tickSize": 30,
+        "tickDash": [2, 2]},
+    {"orient": "left", "scale": "y", "tickCount": 5},
+    {"orient": "right", "scale": "y2", "tickCount": 5}
   ],
 
   "marks": [
@@ -100,10 +111,7 @@
               "strokeWidth": {"value": 2}
             },
             "update": {
-              "strokeOpacity": {"value": 0.5}
-            },
-            "hover": {
-              "strokeOpacity": {"value": 1}
+              "strokeOpacity": {"signal": "hover.name == 'Humidity' ? 1 : 0.5"}
             }
           }
         }
@@ -130,10 +138,7 @@
                 "strokeWidth": {"value": 2}
               },
               "update": {
-                "strokeOpacity": {"value": 0.5}
-              },
-              "hover": {
-                "strokeOpacity": {"value": 1}
+                "strokeOpacity": {"signal": "hover.name == 'Temperature' ? 1 : 0.5"}
               }
             }
           }

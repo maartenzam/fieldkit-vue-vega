@@ -24,6 +24,9 @@ const colorRight = "#3fab29";
 doublelineVegaSpec.marks[0].marks[0].encode.enter.stroke.value = colorLeft
 doublelineVegaSpec.marks[1].marks[0].encode.enter.stroke.value = colorRight
 
+doublelineVegaSpec.axes[1].title = "Humidity (%)";
+doublelineVegaSpec.axes[2].title = "Temperature (°F)";
+
 //import chartConfig from "../assets/chartConfig.json";
 
 //doublelineSpec.config = chartConfig;
@@ -48,12 +51,20 @@ doublelineSpec.layer[1].encoding.y.axis.labelColor = colorRight;*/
 
 export default {
   name: "DoubleLineChartVega",
+  data() {
+    return { vegaView: null };
+  },
   mounted: function () {
     vegaEmbed(".doublelinechartvega", doublelineVegaSpec, {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },
-    })
+    }).then((result) => {
+      this.vegaView = result;
+      this.vegaView.view.addSignalListener("hover", function (_, value) {
+        console.log(value)
+      });
+    });
   },
 };
 </script>
@@ -61,5 +72,6 @@ export default {
 <style scoped>
 .viz {
   width: 100%;
+  height: 100%;
 }
 </style>
