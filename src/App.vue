@@ -6,6 +6,9 @@
       <DoubleLineChartVega/>
     </div>
     <div class="chart">
+      <DoubleScrubber v-bind:showFirst="false"/>
+    </div>
+    <div class="chart">
       <LineChart v-bind:customColors="false" id="linechart1"></LineChart>
     </div>
     <div class="chart">
@@ -17,9 +20,6 @@
     </div>
     <div class="chart">
       <DoubleLineChartColor />
-    </div>
-    <div class="chart">
-      <DoubleScrubber />
     </div>
     <h2>Range chart</h2>
     <div class="chart">

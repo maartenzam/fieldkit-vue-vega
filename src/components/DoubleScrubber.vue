@@ -30,11 +30,28 @@ scrubberSpec.layer[3].data = { values: iconsData.data };
 
 export default {
   name: "Scrubber",
+  props: ["showFirst"],
   data() {
-    return { vegaView: null };
+    return {
+      vegaView: null,
+      showfirst: this.showFirst,
+      spec: JSON.parse(JSON.stringify(scrubberSpec)),
+      };
+  },
+  computed: {
+    finalSpec: function () {
+      let finalSpec = this.spec;
+      if (this.showfirst) {
+        finalSpec.layer[2].mark.opacity = 0;
+      }
+      else{
+        finalSpec.layer[1].mark.opacity = 0;
+      }
+      return finalSpec;
+    },
   },
   mounted: function () {
-    vegaEmbed(".doublescrubber", scrubberSpec, {
+    vegaEmbed(".doublescrubber", this.finalSpec, {
       renderer: "svg",
       actions: { source: false, editor: false, compiled: false },
     }).then((result) => {

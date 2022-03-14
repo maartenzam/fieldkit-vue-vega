@@ -177,7 +177,7 @@
               "strokeWidth": { "value": 2 },
               "size": { "value": 100 },
               "tooltip": {
-                "signal": "{'Humidity': join([round(datum.value*10)/10, '%'], ' ')}"
+                "signal": "{title: 'Humidity', 'Value': join([round(datum.value*10)/10, '%'], ' '), 'time': timeFormat(datum.time, '%Y-%m-%d %H:%m')}"
               },
               "fill": { "value": "blue" },
               "fillOpacity": { "value": 0 }
@@ -233,7 +233,7 @@
               "strokeWidth": { "value": 2 },
               "size": { "value": 100 },
               "tooltip": {
-                "signal": "{'Temperature': join([round(datum.value*10)/10, '°F'], ' ')}"
+                "signal": "{title: 'Temperature', 'Value': join([round(datum.value*10)/10, '°F'], ' '), 'time': timeFormat(datum.time, '%Y-%m-%d %H:%m')}"
               },
               "fill": { "value": "red" },
               "fillOpacity": { "value": 0 }

@@ -163,12 +163,7 @@ export default {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },
-    }).then((result) => {
-      this.vegaView = result;
-      this.vegaView.view.addSignalListener("hover", function (_, value) {
-        console.log(value)
-      });
-    });
+    })
   },
 };
 </script>

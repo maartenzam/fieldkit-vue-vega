@@ -24,7 +24,7 @@
       "mark": { "type": "line", "color": "#DCDEDF", "opacity": 0}
     },
     {
-      "mark": { "type": "line", "color": "#52b5e4" },
+      "mark": { "type": "area", "color": "#52b5e4" },
       "encoding": {
         "y": {
           "field": "value",
@@ -38,7 +38,7 @@
       }
     },
     {
-      "mark": { "type": "line", "color": "red" },
+      "mark": { "type": "area", "color": "#52b5e4" },
       "encoding": {
         "y": {
           "field": "value",
