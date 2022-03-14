@@ -22,7 +22,9 @@ const colorLeft = "#5736FF";
 const colorRight = "#3fab29";
 
 doublelineVegaSpec.marks[0].marks[0].encode.enter.stroke.value = colorLeft
+doublelineVegaSpec.marks[0].marks[1].encode.enter.fill.value = colorLeft
 doublelineVegaSpec.marks[1].marks[0].encode.enter.stroke.value = colorRight
+doublelineVegaSpec.marks[1].marks[1].encode.enter.fill.value = colorRight
 
 doublelineVegaSpec.axes[1].title = "Humidity (%)";
 doublelineVegaSpec.axes[2].title = "Temperature (°F)";

@@ -144,6 +144,12 @@
                 "tooltip": {"signal": "{'Humidity': join([round(datum.value*10)/10, '%'], ' ')}"},
                 "fill": {"value": "red"},
                 "fillOpacity": {"value": 0}
+              },
+              "hover": {
+                  "fillOpacity": {"value": 0.5}
+              },
+              "update": {
+                  "fillOpacity": {"value": 0}
               }
             }
           }
@@ -176,7 +182,7 @@
               }
             }
           },
-        {
+          {
             "type": "symbol",
             "from": {"data": "series2"},
             "encode": {
@@ -186,9 +192,15 @@
                 "stroke": {"value": null},
                 "strokeWidth": {"value": 2},
                 "size": {"value": 100},
-                "tooltip": {"signal": "{'Temperature': join([round(datum.value*10)/10, '°F'], ' ')}"},
+                "tooltip": {"signal": "{'Humidity': join([round(datum.value*10)/10, '%'], ' ')}"},
                 "fill": {"value": "red"},
                 "fillOpacity": {"value": 0}
+              },
+              "hover": {
+                  "fillOpacity": {"value": 0.5}
+              },
+              "update": {
+                  "fillOpacity": {"value": 0}
               }
             }
           }
