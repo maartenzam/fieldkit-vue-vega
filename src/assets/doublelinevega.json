@@ -39,10 +39,7 @@
   "data": [
     {
       "name": "table1",
-      "values": [],
-      "transform": [
-          {"type": "formula", "expr": "datum.value <= 50 ? datum.value : null", "as": "wet"}
-      ]
+      "values": []
     },
     {
       "name": "table2",
@@ -101,7 +98,11 @@
       "symbolOpacity": {
         "signal": "hover.name == 'Humidity' ? 1 : 0.1"
       },
-      "symbolType": "stroke"
+      "symbolType": "stroke",
+      "title": "Humidity",
+      "titleOpacity": {
+        "signal": "hover.name == 'Humidity' ? 1 : 0.1"
+      }
   },{
     "stroke": "colorRight",
     "orient": "top",
@@ -112,7 +113,11 @@
     "symbolOpacity": {
       "signal": "hover.name == 'Temperature' ? 1 : 0.1"
     },
-    "symbolType": "stroke"
+    "symbolType": "stroke",
+    "title": "Temperature",
+      "titleOpacity": {
+        "signal": "hover.name == 'Temperature' ? 1 : 0.1"
+      }
 }],
 
   "axes": [
@@ -194,13 +199,6 @@
     },
     {
       "type": "group",
-      "from": {
-        "facet": {
-          "name": "series2",
-          "data": "table2",
-          "groupby": "name"
-        }
-      },
       "marks": [
         {
           "type": "line",
@@ -224,7 +222,7 @@
         },
         {
           "type": "symbol",
-          "from": { "data": "series2" },
+          "from": { "data": "table2" },
           "encode": {
             "enter": {
               "x": { "scale": "x", "field": "time" },

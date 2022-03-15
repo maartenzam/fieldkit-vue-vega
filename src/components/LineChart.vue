@@ -79,8 +79,8 @@ const thresholdLayers = thresholds
       },
       mark: {
         type: "line",
-        interpolate: { expr: "interpolate" },
-        tension: { expr: "tension" },
+        "interpolate": "cardinal",
+        "tension": 0.9
       },
     };
   })

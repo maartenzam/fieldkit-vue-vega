@@ -3,32 +3,6 @@
   "description": "Vega-Lite spec for FieldKit time series charts.",
   "width": "container",
   "autosize": { "type": "fit", "contains": "padding" },
-  "params": [
-    {
-      "name": "interpolate",
-      "value": "cardinal",
-      "bind": {
-        "input": "select",
-        "options": [
-          "basis",
-          "bundle",
-          "cardinal",
-          "catmull-rom",
-          "linear",
-          "monotone",
-          "natural",
-          "step",
-          "step-after",
-          "step-before"
-        ]
-      }
-    },
-    {
-      "name": "tension",
-      "value": 0.9,
-      "bind": { "input": "range", "min": 0, "max": 1, "step": 0.05 }
-    }
-  ],
   "encoding": {
     "x": {
       "field": "time",
@@ -68,8 +42,8 @@
             "color": "#bbbbbb",
             "strokeWidth": 1,
             "strokeDash": [4,4],
-            "interpolate": { "expr": "interpolate" },
-            "tension": { "expr": "tension" }
+            "interpolate": "cardinal",
+            "tension": 0.9
           }
         },
         {
@@ -96,8 +70,8 @@
               ]
             },
             "strokeWidth": 2,
-            "interpolate": { "expr": "interpolate" },
-            "tension": { "expr": "tension" }
+            "interpolate": "cardinal",
+            "tension": 0.9
           }
         },
         {

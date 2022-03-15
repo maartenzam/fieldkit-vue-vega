@@ -8,15 +8,15 @@ import doublelineVegaSpec from "../assets/doublelinevega.json";
 import fieldkitHumidityData from "../assets/fieldkitHumidityData.json";
 import fieldkitTemperatureData from "../assets/fieldkitTemperatureData.json";
 
-fieldkitHumidityData.data.forEach(item => {
-  item.name = "Humidity"
-})
-fieldkitTemperatureData.data.forEach(item => {
-  item.name = "Temperature"
-})
+fieldkitHumidityData.data.forEach((item) => {
+  item.name = "Humidity";
+});
+fieldkitTemperatureData.data.forEach((item) => {
+  item.name = "Temperature";
+});
 
-doublelineVegaSpec.data[0].values = fieldkitHumidityData.data
-doublelineVegaSpec.data[1].values = fieldkitTemperatureData.data
+doublelineVegaSpec.data[0].values = fieldkitHumidityData.data;
+doublelineVegaSpec.data[1].values = fieldkitTemperatureData.data;
 
 doublelineVegaSpec.axes[1].title = "Humidity (%)";
 doublelineVegaSpec.axes[2].title = "Temperature (°F)";
@@ -49,11 +49,15 @@ let thresholdsLeft = [
   },
 ];
 
-const thresholdsLeftTransforms = thresholdsLeft.map((d,i) => {
-        return {"type": "formula", "expr": "datum.value <= " + d.value  + " ? datum.value : null", "as": "wet" + i}  
-})
+const thresholdsLeftTransforms = thresholdsLeft.map((d, i) => {
+  return {
+    type: "formula",
+    expr: "datum.value <= " + d.value + " ? datum.value : null",
+    as: "left" + i,
+  };
+});
 
-doublelineVegaSpec.data[0].transform = thresholdsLeftTransforms
+doublelineVegaSpec.data[0].transform = thresholdsLeftTransforms;
 
 let thresholdsRight = [
   {
@@ -83,75 +87,82 @@ let thresholdsRight = [
   },
 ];
 
-const thresholdsRightTransforms = thresholdsRight.map((d,i) => {
-        return {"type": "formula", "expr": "datum.value <= " + d.value  + " ? datum.value : null", "as": "warm" + i}  
-})
+const thresholdsRightTransforms = thresholdsRight.map((d, i) => {
+  return {
+    type: "formula",
+    expr: "datum.value <= " + d.value + " ? datum.value : null",
+    as: "right" + i,
+  };
+});
 
-doublelineVegaSpec.data[1].transform = thresholdsRightTransforms
+doublelineVegaSpec.data[1].transform = thresholdsRightTransforms;
 
-const thresholdsLeftMarks = thresholdsLeft.map((d,i) => {
-    return{
-        "type": "line",
-          "from": { "data": "table1" },
-          "encode": {
-            "enter": {
-              "interpolate": { "value": "cardinal" },
-              "tension": { "value": 0.9 },
-              "x": { "scale": "x", "field": "time" },
-              "y": { "scale": "y", "field": "wet" + i},
-              "stroke": { "value": d.color },
-              "strokeWidth": { "value": 2 },
-              "defined": { "signal": "isValid(datum.wet" + i + ")" }
-            },
-            "update": {
-              "strokeOpacity": {
-                "signal": "hover.name == 'Humidity' ? 1 : 0.1"
-              }
-            }
-          }
-        }
-})
-doublelineVegaSpec.marks[0].marks = [doublelineVegaSpec.marks[0].marks[0]].concat(thresholdsLeftMarks.reverse()).concat(doublelineVegaSpec.marks[0].marks[1])
+const thresholdsLeftMarks = thresholdsLeft.map((d, i) => {
+  return {
+    type: "line",
+    from: { data: "table1" },
+    encode: {
+      enter: {
+        interpolate: { value: "cardinal" },
+        tension: { value: 0.9 },
+        x: { scale: "x", field: "time" },
+        y: { scale: "y", field: "left" + i },
+        stroke: { value: d.color },
+        strokeWidth: { value: 2 },
+        defined: { signal: "isValid(datum.left" + i + ")" },
+      },
+      update: {
+        strokeOpacity: {
+          signal: "hover.name == 'Humidity' ? 1 : 0.1",
+        },
+      },
+    },
+  };
+});
+doublelineVegaSpec.marks[0].marks = [doublelineVegaSpec.marks[0].marks[0]]
+  .concat(thresholdsLeftMarks.reverse())
+  .concat(doublelineVegaSpec.marks[0].marks[1]);
 
-const thresholdsRightMarks = thresholdsRight.map((d,i) => {
-    return{
-        "type": "line",
-          "from": { "data": "table2" },
-          "encode": {
-            "enter": {
-              "interpolate": { "value": "cardinal" },
-              "tension": { "value": 0.9 },
-              "x": { "scale": "x", "field": "time" },
-              "y": { "scale": "y2", "field": "warm" + i},
-              "stroke": { "value": d.color },
-              "strokeWidth": { "value": 2 },
-              "defined": { "signal": "isValid(datum.warm" + i + ")" }
-            },
-            "update": {
-              "strokeOpacity": {
-                "signal": "hover.name == 'Temperature' ? 1 : 0.1"
-              }
-            }
-          }
-        }
-})
-doublelineVegaSpec.marks[1].marks = [doublelineVegaSpec.marks[1].marks[0]].concat(thresholdsRightMarks.reverse()).concat(doublelineVegaSpec.marks[1].marks[1])
+const thresholdsRightMarks = thresholdsRight.map((d, i) => {
+  return {
+    type: "line",
+    from: { data: "table2" },
+    encode: {
+      enter: {
+        interpolate: { value: "cardinal" },
+        tension: { value: 0.9 },
+        x: { scale: "x", field: "time" },
+        y: { scale: "y2", field: "right" + i },
+        stroke: { value: d.color },
+        strokeWidth: { value: 2 },
+        defined: { signal: "isValid(datum.right" + i + ")" },
+      },
+      update: {
+        strokeOpacity: {
+          signal: "hover.name == 'Temperature' ? 1 : 0.1",
+        },
+      },
+    },
+  };
+});
+doublelineVegaSpec.marks[1].marks = [doublelineVegaSpec.marks[1].marks[0]]
+  .concat(thresholdsRightMarks.reverse())
+  .concat(doublelineVegaSpec.marks[1].marks[1]);
 
 doublelineVegaSpec.scales = doublelineVegaSpec.scales.concat([
-    {
-      "name": "colorLeft",
-      "type": "ordinal",
-      "domain": thresholdsLeft.map(d => d.label),
-      "range": thresholdsLeft.map(d => d.color)
-    },
-    {
-      "name": "colorRight",
-      "type": "ordinal",
-      "domain": thresholdsRight.map(d => d.label),
-      "range": thresholdsRight.map(d => d.color)
-    }
-    ]
-)
+  {
+    name: "colorLeft",
+    type: "ordinal",
+    domain: thresholdsLeft.map((d) => d.label),
+    range: thresholdsLeft.map((d) => d.color),
+  },
+  {
+    name: "colorRight",
+    type: "ordinal",
+    domain: thresholdsRight.map((d) => d.label),
+    range: thresholdsRight.map((d) => d.color),
+  },
+]);
 
 export default {
   name: "DoubleLineChartVega",
@@ -163,7 +174,7 @@ export default {
       renderer: "svg",
       tooltip: { offsetX: -50, offsetY: 50 },
       actions: { source: false, editor: false, compiled: false },
-    })
+    });
   },
 };
 </script>
