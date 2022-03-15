@@ -24,6 +24,17 @@
       "mark": { "type": "line", "color": "#DCDEDF", "opacity": 0}
     },
     {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "value",
+              "as": "minValue"
+            }
+          ]
+        }
+      ],
       "mark": { "type": "area", "color": "#52b5e4" },
       "encoding": {
         "y": {
@@ -34,10 +45,24 @@
             "labelOpacity": 0,
             "grid": false
           }
+        },
+        "y2": {
+          "field": "minValue"
         }
       }
     },
     {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "value",
+              "as": "minValue"
+            }
+          ]
+        }
+      ],
       "mark": { "type": "area", "color": "#52b5e4" },
       "encoding": {
         "y": {
@@ -48,6 +73,9 @@
             "labelOpacity": 0,
             "grid": false
           }
+        },
+        "y2": {
+          "field": "minValue"
         }
       }
     },

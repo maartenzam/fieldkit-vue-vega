@@ -20,12 +20,12 @@ scrubberSpec.config = JSON.parse(JSON.stringify(chartConfig));
 const height = 50;
 
 scrubberSpec.height = height;
-scrubberSpec.layer[3].encoding.y = {"value": height};
+scrubberSpec.layer[3].encoding.y = { value: height };
 scrubberSpec.config.axisX.tickSize = 20;
 scrubberSpec.config.view = { fill: "#f4f5f7", stroke: "transparent" };
 
 scrubberSpec.data = { values: fieldkitHumidityData.data };
-scrubberSpec.layer[2].data = { values: fieldkitTemperatureData.data };
+scrubberSpec.layer[2].data = {values: fieldkitTemperatureData.data};
 scrubberSpec.layer[3].data = { values: iconsData.data };
 
 export default {
@@ -36,15 +36,14 @@ export default {
       vegaView: null,
       showfirst: this.showFirst,
       spec: JSON.parse(JSON.stringify(scrubberSpec)),
-      };
+    };
   },
   computed: {
     finalSpec: function () {
       let finalSpec = this.spec;
       if (this.showfirst) {
         finalSpec.layer[2].mark.opacity = 0;
-      }
-      else{
+      } else {
         finalSpec.layer[1].mark.opacity = 0;
       }
       return finalSpec;
@@ -63,12 +62,12 @@ export default {
       this.vegaView.view.addEventListener("mouseup", function () {
         console.log(timeValue);
       });
-      let wheeling
+      let wheeling;
       this.vegaView.view.addEventListener("wheel", function () {
-        clearTimeout(wheeling)
-        wheeling = setTimeout(function(){
-            console.log(timeValue);
-        },50)
+        clearTimeout(wheeling);
+        wheeling = setTimeout(function () {
+          console.log(timeValue);
+        }, 50);
       });
     });
   },
