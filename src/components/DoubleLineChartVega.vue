@@ -50,7 +50,7 @@ let thresholdsLeft = [
 ];
 
 const thresholdsLeftTransforms = thresholdsLeft.map((d, i) => {
-  return {
+return {
     type: "formula",
     expr: "datum.value <= " + d.value + " ? datum.value : null",
     as: "left" + i,
@@ -98,6 +98,7 @@ const thresholdsRightTransforms = thresholdsRight.map((d, i) => {
 doublelineVegaSpec.data[1].transform = thresholdsRightTransforms;
 
 const thresholdsLeftMarks = thresholdsLeft.map((d, i) => {
+  let strokewidth = 2 + (thresholdsLeft.length - i)/thresholdsLeft.length
   return {
     type: "line",
     from: { data: "table1" },
@@ -105,10 +106,11 @@ const thresholdsLeftMarks = thresholdsLeft.map((d, i) => {
       enter: {
         interpolate: { value: "cardinal" },
         tension: { value: 0.9 },
+        strokeCap: { value: "round"},
         x: { scale: "x", field: "time" },
         y: { scale: "y", field: "left" + i },
         stroke: { value: d.color },
-        strokeWidth: { value: 2 },
+        strokeWidth: { value: strokewidth },
         defined: { signal: "isValid(datum.left" + i + ")" },
       },
       update: {
@@ -124,6 +126,7 @@ doublelineVegaSpec.marks[0].marks = [doublelineVegaSpec.marks[0].marks[0]]
   .concat(doublelineVegaSpec.marks[0].marks[1]);
 
 const thresholdsRightMarks = thresholdsRight.map((d, i) => {
+  let strokewidth = 2 + (thresholdsRight.length - i)/thresholdsRight.length
   return {
     type: "line",
     from: { data: "table2" },
@@ -131,10 +134,11 @@ const thresholdsRightMarks = thresholdsRight.map((d, i) => {
       enter: {
         interpolate: { value: "cardinal" },
         tension: { value: 0.9 },
+        strokeCap: { value: "round"},
         x: { scale: "x", field: "time" },
         y: { scale: "y2", field: "right" + i },
         stroke: { value: d.color },
-        strokeWidth: { value: 2 },
+        strokeWidth: { value: strokewidth },
         defined: { signal: "isValid(datum.right" + i + ")" },
       },
       update: {

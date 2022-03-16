@@ -46,6 +46,7 @@ let thresholds = [
 
 const thresholdLayers = thresholds
   .map((d, i) => {
+    let strokewidth = 2 + (thresholds.length - i)/thresholds.length
     return {
       transform: [
         {
@@ -80,7 +81,9 @@ const thresholdLayers = thresholds
       mark: {
         type: "line",
         "interpolate": "cardinal",
-        "tension": 0.9
+        "tension": 0.9,
+        "strokeCap": "round",
+        "strokeWidth": strokewidth
       },
     };
   })
